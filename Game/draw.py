@@ -24,7 +24,8 @@ class lifeGame(object):
             self.alive.append([])
             for j in range(self.count // 10):
                 # 随机初始化，按照生存概率（当前为50）
-                if i != 0 and j != 0 and i != self.count // 10 - 1 and j != self.count // 10 - 1 and random.randrange(0,100) >= 50:
+                if i != 0 and j != 0 and i != self.count // 10 - 1 and j != self.count // 10 - 1 and random.randrange(0,
+                                                                                                                      100) >= 50:
                     self.alive[i].append(1)
                 else:
                     self.alive[i].append(0)
@@ -59,6 +60,12 @@ class lifeGame(object):
     def reset(self):
         self.random_alive()
         self.draw()
+
+    def set_alive(self, alive):
+        self.alive = alive
+
+    def get_alive(self):
+        return self.alive
 
     def alive_refresh(self):
         # 遍历进行判断，注意下标从1开始
@@ -100,6 +107,7 @@ class lifeGame(object):
         self.draw()
         # 添加定时器
         self.cid = self.canvas.after(100, self.refresh)
+
 
 x = lifeGame(300)
 x.init()
