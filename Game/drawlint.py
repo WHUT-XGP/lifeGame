@@ -126,6 +126,25 @@ class LifeGame:
         self.random_alive()
         self.draw()
 
+    def set_alive(self, alive):
+
+        """
+        set the array of alive by hand operation.
+
+        :param alive:
+        :return: None
+        """
+        self.alive = alive
+
+    def get_alive(self):
+
+        """
+        get the self.alive.
+
+        :return: self.alive
+        """
+        return self.alive
+
     def alive_refresh(self):
 
         """
@@ -148,10 +167,10 @@ class LifeGame:
                           self.alive[i + 1][j] + self.alive[i + 1][j + 1]
                 # 由死亡条件，列真值表进行逻辑电路分析 ans_sum==3 ans_sum==2 alive[][]==true
                 if ans_sum == 3 and not self.alive[i][j]:
-                    self.alive[i][j] = True
+                    self.alive[i][j] = 1
                 elif self.alive[i][j]:
                     if ans_sum < 2 or ans_sum > 3:
-                        self.alive[i][j] = False
+                        self.alive[i][j] = 0
 
     def draw(self):
 
@@ -189,14 +208,16 @@ class LifeGame:
 
         :return:
         """
-
+        print(self.alive)
         # 更新二维数组
         self.alive_refresh()
+        print(self.alive)
         # 更新canvas
         self.draw()
         # 添加定时器
         self.cid = self.canvas.after(100, self.refresh)
 
 
-x = LifeGame(300)
-x.init()
+if __name__ == '__main__':
+    x = LifeGame(300)
+    x.init()
